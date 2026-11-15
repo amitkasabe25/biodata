@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>बायोडाटा – सोनल कसबे</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Mukta:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2b1233; --plum:#4a1d5c; --rose:#b8325a; --gold:#e8a33d; --gold-soft:#f6dfae;
+  --paper:#fbf7fb; --card:#ffffff; --text:#2d2433; --muted:#74677c; --line:#eadcee;
+  --hero-a:#2b1233; --hero-b:#5a1f55;
+  --serif:'Tiro Devanagari Marathi','Noto Serif Devanagari',Georgia,serif;
+  --sans:'Mukta','Noto Sans Devanagari','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#170c1d; --card:#23132b; --text:#efe6f3; --muted:#a898b2; --line:#3a2447;
+    --hero-a:#1b0a22; --hero-b:#3d1741;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#170c1d; --card:#23132b; --text:#efe6f3; --muted:#a898b2; --line:#3a2447;
+  --hero-a:#1b0a22; --hero-b:#3d1741;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:var(--sans);background:var(--paper);color:var(--text);line-height:1.65;font-size:17px;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* Hero */
+.hero{background:radial-gradient(120% 120% at 15% 0%,var(--hero-b),var(--hero-a) 65%);color:#fff;
+  padding:56px 24px 110px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.09;
+  background-image:radial-gradient(circle at 50% 50%,var(--gold) 1.5px,transparent 2px);background-size:26px 26px}
+.hero-in{max-width:980px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;position:relative}
+.arch{width:300px;aspect-ratio:3/4;border-radius:150px 150px 14px 14px;padding:8px;
+  background:linear-gradient(160deg,var(--gold),#f8d58c 45%,var(--gold));box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.arch img{width:100%;height:100%;object-fit:cover;border-radius:142px 142px 8px 8px;display:block;background:#e9dcef}
+.intro .greet{font-family:var(--serif);color:var(--gold-soft);font-size:1.05rem;letter-spacing:.02em}
+.intro h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1.15;margin:.35em 0 .1em}
+.intro .en{font-size:1.15rem;color:#d9c7e0;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{border:1px solid rgba(246,223,174,.5);color:var(--gold-soft);padding:6px 16px;border-radius:999px;font-size:.95rem;background:rgba(255,255,255,.05)}
+
+/* Layout */
+main{max-width:980px;margin:-64px auto 0;padding:0 20px 48px;position:relative;display:grid;gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 34px;box-shadow:0 10px 30px rgba(74,29,92,.08)}
+.card h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;color:var(--plum);display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.card h2 small{font-family:var(--sans);font-size:.9rem;color:var(--muted)}
+.card h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);transform:translateY(-4px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card h2{color:var(--gold-soft)}}
+:root[data-theme="dark"] .card h2{color:var(--gold-soft)}
+dl{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.row{padding:14px 0;border-bottom:1px dashed var(--line)}
+.row.full{grid-column:1/-1}
+dt{font-size:.88rem;color:var(--muted)}
+dd{font-weight:500;font-size:1.08rem}
+dd .en{color:var(--muted);font-weight:400;font-size:.95rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.two .card dl{grid-template-columns:1fr}
+
+/* Expectations */
+.expect{background:linear-gradient(135deg,var(--plum),var(--rose));color:#fff;border:none}
+.expect h2{color:#fff!important}
+.expect h2 small{color:#f3d9e6}
+.expect h2::after{background:linear-gradient(90deg,var(--gold-soft),transparent)}
+.expect .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+.ex{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:16px 18px}
+.ex b{display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--gold-soft)}
+.ex span{font-size:1rem}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:16px}
+.gallery button{all:unset;cursor:zoom-in;display:block;aspect-ratio:3/4;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);background:var(--line);position:relative}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.gallery button:hover img{transform:scale(1.05)}
+.gallery button:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.lb{border:none;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh;margin:0}
+.lb::backdrop{background:rgba(20,6,26,.92)}
+.lb[open]{display:flex;align-items:center;justify-content:center}
+.lb img{max-width:calc(100vw - 140px);max-height:calc(100vh - 100px);object-fit:contain;border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);background:#1b0a22}
+.lb .nav,.lb .x{position:absolute;border:1px solid rgba(246,223,174,.5);background:rgba(43,18,51,.7);color:var(--gold-soft);
+  border-radius:999px;width:46px;height:46px;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb .nav:hover,.lb .x:hover{background:rgba(74,29,92,.9)}
+.lb .nav:focus-visible,.lb .x:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.lb .prev{left:20px;top:50%;transform:translateY(-50%)}
+.lb .next{right:20px;top:50%;transform:translateY(-50%)}
+.lb .x{right:20px;top:calc(20px + env(safe-area-inset-top,0px))}
+.lb .count{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  color:var(--gold-soft);font-size:.95rem}
+@media (max-width:820px){
+  .gallery{grid-template-columns:repeat(2,1fr);gap:10px}
+  .lb img{max-width:calc(100vw - 24px);max-height:calc(100vh - 140px)}
+  .lb .prev,.lb .next{top:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:none}
+  .lb .prev{left:16px}.lb .next{right:16px}
+  .lb .count{bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+}
+
+/* Contact */
+.contact{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.addr{max-width:520px}
+.call{display:inline-block;background:var(--gold);color:#2b1233;text-decoration:none;font-weight:600;
+  padding:12px 26px;border-radius:999px;font-size:1.1rem}
+.call:hover{filter:brightness(1.07)}
+.call:focus-visible,.theme:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding:0 20px 40px}
+.theme{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;border:1px solid rgba(246,223,174,.5);
+  background:rgba(43,18,51,.6);color:var(--gold-soft);border-radius:999px;padding:6px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+
+@media (max-width:820px){
+  .hero{padding:72px 20px 100px}
+  .hero-in{grid-template-columns:1fr;gap:32px;justify-items:center;text-align:center}
+  .arch{width:240px;border-radius:120px 120px 14px 14px}.arch img{border-radius:112px 112px 8px 8px}
+  .chips{justify-content:center}
+  dl,.two{grid-template-columns:1fr}
+  .card{padding:24px 20px}
+}
+@media print{
+  .theme,.lb{display:none}
+  .gallery{grid-template-columns:repeat(4,1fr)}
+  body{font-size:14px;background:#fff}
+  .hero{padding:28px 24px 70px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.expect{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<button class="theme" id="theme" type="button" aria-label="Toggle dark mode">🌓</button>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="arch">
+      <!-- ▼▼ REPLACE THE src BELOW WITH YOUR PHOTO, e.g. src="photo.jpg" ▼▼ -->
+      <img id="photo" alt="सोनल कसबे यांचा फोटो"
+        src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23efe0f3'/%3E%3Cstop offset='1' stop-color='%23d9bfe3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='400' fill='url(%23g)'/%3E%3Ccircle cx='150' cy='155' r='56' fill='%23b79bc4'/%3E%3Cpath d='M42 400c0-82 48-132 108-132s108 50 108 132z' fill='%23b79bc4'/%3E%3Ctext x='150' y='372' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%23ffffff'%3EYour Photo%3C/text%3E%3C/svg%3E">
+    </div>
+    <div class="intro">
+      <h1>सोनल शशिकांत कसबे</h1>
+      <p class="en">Sonal Shashikant Kasabe</p>
+      <div class="chips">
+        <span class="chip">बी.टेक (E&amp;TC)</span>
+        <span class="chip">सॉफ्टवेअर इंजिनिअर</span>
+        <span class="chip">पंढरपूर</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>वैयक्तिक माहिती <small>Personal details</small></h2>
+    <dl>
+      <div class="row full"><dt>संपूर्ण नाव</dt><dd>सोनल शशिकांत कसबे <span class="en">(Sonal Shashikant Kasabe)</span></dd></div>
+      <div class="row"><dt>जन्म तारीख</dt><dd>०८ ऑगस्ट २००१ <span class="en">(08-08-2001)</span></dd></div>
+      <div class="row"><dt>जन्म वेळ</dt><dd>दुपारी ४:०० <span class="en">(4:00 PM)</span></dd></div>
+      <div class="row"><dt>जन्म ठिकाण</dt><dd>पंढरपूर</dd></div>
+      <div class="row"><dt>उंची</dt><dd>५ फूट <span class="en">(5.00 ft)</span></dd></div>
+      <div class="row"><dt>वर्ण</dt><dd>गोरा <span class="en">(Fair)</span></dd></div>
+      <div class="row"><dt>धर्म आणि जात</dt><dd>हिंदू – मांग</dd></div>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>शिक्षण आणि व्यवसाय <small>Education &amp; career</small></h2>
+    <dl>
+      <div class="row"><dt>शिक्षण</dt><dd>बी.टेक (E&amp;TC) <span class="en">/ B.Tech E&amp;TC</span></dd></div>
+      <div class="row"><dt>नोकरी</dt><dd>सॉफ्टवेअर इंजिनिअर <span class="en">(SEDMAC Ltd.)</span></dd></div>
+      <div class="row full"><dt>उत्पन्न</dt><dd>३.५ लाख प्रति वर्ष <span class="en">(3.5 LPA)</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>कौटुंबिक माहिती <small>Family</small></h2>
+    <dl>
+      <div class="row"><dt>वडिलांचे नाव</dt><dd>श्री. शशिकांत रोहिदास कसबे <span class="en">(ऑटो चालक)</span></dd></div>
+      <div class="row"><dt>आईचे नाव</dt><dd>सौ. मालती कसबे <span class="en">(गृहिणी)</span></dd></div>
+      <div class="row"><dt>भाऊ</dt><dd>१ भाऊ – अमित कसबे <span class="en">(सॉफ्टवेअर इंजिनिअर, डिजिटल इंडिया कॉर्पोरेशन, दिल्ली)</span></dd></div>
+      <div class="row"><dt>मूळ गाव</dt><dd>पंढरपूर</dd></div>
+      <div class="row full"><dt>नातेवाईकांची आडनावे</dt><dd>कसबे, वाघमारे, कांबळे, रणदिवे</dd></div>
+    </dl>
+  </section>
+
+  <section class="card" id="photos">
+    <h2>छायाचित्रे <small>Photo gallery</small></h2>
+    <!-- ▼▼ ADD YOUR PHOTOS HERE. Put image files next to index.html (or in an "images" folder)
+         and copy one <button> line per photo, changing only the src. Add or remove lines freely. ▼▼ -->
+    <div class="gallery">
+      <button type="button"><img src="images/photo01.jpg" alt="फोटो १" loading="lazy"></button>
+      <button type="button"><img src="images/photo02.jpg" alt="फोटो २" loading="lazy"></button>
+      <button type="button"><img src="images/photo03.jpg" alt="फोटो ३" loading="lazy"></button>
+      <button type="button"><img src="images/photo04.jpg" alt="फोटो ४" loading="lazy"></button>
+      <button type="button"><img src="images/photo05.jpg" alt="फोटो ५" loading="lazy"></button>
+      <button type="button"><img src="images/photo06.jpg" alt="फोटो ६" loading="lazy"></button>
+      <button type="button"><img src="images/photo07.jpg" alt="फोटो ७" loading="lazy"></button>
+      <button type="button"><img src="images/photo08.jpg" alt="फोटो ८" loading="lazy"></button>
+      <button type="button"><img src="images/photo09.jpg" alt="फोटो ९" loading="lazy"></button>
+      <button type="button"><img src="images/photo10.jpg" alt="फोटो १०" loading="lazy"></button>
+      <button type="button"><img src="images/photo11.jpg" alt="फोटो ११" loading="lazy"></button>
+      <button type="button"><img src="images/photo12.jpg" alt="फोटो १२" loading="lazy"></button>
+      <button type="button"><img src="images/photo13.jpg" alt="फोटो १३" loading="lazy"></button>
+      <button type="button"><img src="images/photo14.jpg" alt="फोटो १४" loading="lazy"></button>
+      <button type="button"><img src="images/photo15.jpg" alt="फोटो १५" loading="lazy"></button>
+    </div>
+  </section>
+
+  <section class="card expect">
+    <h2>अपेक्षा <small>Expectations</small></h2>
+    <div class="grid">
+      <div class="ex"><b>उत्पन्न</b><span>किमान ६ लाख प्रति वर्ष (₹५०,००० प्रति महिना)</span></div>
+      <div class="ex"><b>स्वतःचे घर</b><span>मुलाचे स्वतःचे घर असणे आवश्यक आहे.</span></div>
+      <div class="ex"><b>पार्श्वभूमी</b><span>सुशिक्षित आणि चांगली कौटुंबिक पार्श्वभूमी असावी.</span></div>
+      <div class="ex"><b>व्यवसाय</b><span>सॉफ्टवेअर इंजिनिअरला प्राधान्य.</span></div>
+      <div class="ex"><b>नोकरीची अट</b><span>लग्नानंतर मुलीने नोकरी करणे बंधनकारक राहील.</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>संपर्क <small>Contact</small></h2>
+    <div class="contact">
+      <div class="addr">
+        <dl style="grid-template-columns:1fr"><div class="row" style="border:0"><dt>सध्याचा पत्ता</dt>
+        <dd>संतपेठ, सांगोला रोड, बागवान नगर, पंढरपूर</dd></div></dl>
+      </div>
+      <a class="call" href="tel:+919738732190">📞 +91 97387 32190</a>
+    </div>
+  </section>
+</main>
+
+<footer>सोनल कसबे – बायोडाटा</footer>
+
+<dialog class="lb" id="lb" aria-label="Photo viewer">
+  <img id="lbImg" alt="">
+  <button class="x" type="button" id="lbClose" aria-label="Close">✕</button>
+  <button class="nav prev" type="button" id="lbPrev" aria-label="Previous photo">‹</button>
+  <button class="nav next" type="button" id="lbNext" aria-label="Next photo">›</button>
+  <div class="count" id="lbCount"></div>
+</dialog>
+
+<script>
+/* Photo gallery + modal viewer */
+(function(){
+  var PH="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%23e3d2ea'/%3E%3Ccircle cx='150' cy='170' r='40' fill='%23c4aad0'/%3E%3Cpath d='M70 280l55-60 40 40 30-25 35 45z' fill='%23c4aad0'/%3E%3Ctext x='150' y='340' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%23ffffff'%3EAdd photo%3C/text%3E%3C/svg%3E";
+  var thumbs=[].slice.call(document.querySelectorAll('.gallery img'));
+  thumbs.forEach(function(img){
+    function fallback(){ if(img.src!==PH){img.src=PH;img.dataset.placeholder='1';} }
+    img.addEventListener('error',fallback);
+    if(img.complete&&img.naturalWidth===0) fallback();
+  });
+
+  var lb=document.getElementById('lb'),big=document.getElementById('lbImg'),
+      count=document.getElementById('lbCount'),i=0;
+  function show(n){
+    i=(n+thumbs.length)%thumbs.length;
+    big.src=thumbs[i].src; big.alt=thumbs[i].alt;
+    count.textContent=(i+1)+' / '+thumbs.length;
+    var multi=thumbs.length>1;
+    document.getElementById('lbPrev').hidden=!multi;
+    document.getElementById('lbNext').hidden=!multi;
+  }
+  thumbs.forEach(function(img,n){
+    img.parentNode.addEventListener('click',function(){ show(n); lb.showModal(); });
+  });
+  document.getElementById('lbClose').addEventListener('click',function(){ lb.close(); });
+  document.getElementById('lbPrev').addEventListener('click',function(){ show(i-1); });
+  document.getElementById('lbNext').addEventListener('click',function(){ show(i+1); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+  lb.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft') show(i-1);
+    if(e.key==='ArrowRight') show(i+1);
+  });
+  var x0=null;
+  lb.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){
+    if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>50) show(dx<0?i+1:i-1);
+  });
+})();
+
+
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||
+      (!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme',dark?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>
